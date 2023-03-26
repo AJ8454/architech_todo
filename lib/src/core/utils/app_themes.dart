@@ -15,7 +15,7 @@ class AppTheme {
         titleTextStyle: TextStyle(
           color: AppColor.black,
           fontSize: 16,
-          fontFamily: 'monseterrat',
+          fontFamily: 'poppins',
           fontWeight: FontWeight.w600,
         ),
         // systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
@@ -33,7 +33,7 @@ class AppTheme {
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColor.white,
         elevation: 8,
-        selectedItemColor: AppColor.kknowelloBlue,
+        selectedItemColor: AppColor.blue,
         unselectedItemColor: AppColor.black,
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle:
@@ -44,10 +44,10 @@ class AppTheme {
       dividerColor: AppColor.dividerLight,
       splashColor: AppColor.transparent,
       iconTheme: const IconThemeData(color: AppColor.black),
-      fontFamily: 'monseterrat',
+      fontFamily: 'poppins',
       textTheme: ThemeData.light().textTheme,
       progressIndicatorTheme:
-          const ProgressIndicatorThemeData(color: AppColor.kknowelloBlue),
+          const ProgressIndicatorThemeData(color: AppColor.blue),
       buttonTheme: ButtonThemeData(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppResponsive.kBorderRadius)),
@@ -55,19 +55,19 @@ class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: AppColor.kknowelloBlue,
+          foregroundColor: AppColor.blue,
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.kknowelloBlue,
+          backgroundColor: AppColor.blue,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppResponsive.kBorderRadius)),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColor.kknowelloBlue,
+          foregroundColor: AppColor.blue,
           backgroundColor: AppColor.backgroundLight,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
@@ -95,16 +95,14 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppResponsive.kBorderRadius),
-          borderSide:
-              const BorderSide(color: AppColor.kknowelloBlue, width: 1.5),
+          borderSide: const BorderSide(color: AppColor.blue, width: 1.5),
         ),
       ),
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateColor.resolveWith(
           (states) {
             if (states.contains(MaterialState.selected)) {
-              return AppColor
-                  .kknowelloBlue; // the color when checkbox is selected;
+              return AppColor.blue; // the color when checkbox is selected;
             }
             return Colors.grey; //the color when checkbox is unselected;
           },
@@ -145,7 +143,7 @@ class AppTheme {
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColor.dark,
         elevation: 10,
-        selectedItemColor: AppColor.kknowelloBlue,
+        selectedItemColor: AppColor.blue,
         unselectedItemColor: AppColor.white,
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle:
@@ -159,7 +157,7 @@ class AppTheme {
       fontFamily: 'monseterrat',
       textTheme: ThemeData.dark().textTheme,
       progressIndicatorTheme:
-          const ProgressIndicatorThemeData(color: AppColor.kknowelloBlue),
+          const ProgressIndicatorThemeData(color: AppColor.blue),
       buttonTheme: ButtonThemeData(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -167,19 +165,19 @@ class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: AppColor.kknowelloBlue,
+          foregroundColor: AppColor.blue,
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.kknowelloBlue,
+          backgroundColor: AppColor.blue,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColor.kknowelloBlue,
+          foregroundColor: AppColor.blue,
           backgroundColor: AppColor.backgroundDark,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
@@ -206,16 +204,14 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppResponsive.kBorderRadius),
-          borderSide:
-              const BorderSide(color: AppColor.kknowelloBlue, width: 1.5),
+          borderSide: const BorderSide(color: AppColor.blue, width: 1.5),
         ),
       ),
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateColor.resolveWith(
           (states) {
             if (states.contains(MaterialState.selected)) {
-              return AppColor
-                  .kknowelloBlue; // the color when checkbox is selected;
+              return AppColor.blue; // the color when checkbox is selected;
             }
             return Colors.grey; //the color when checkbox is unselected;
           },

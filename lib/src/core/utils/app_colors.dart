@@ -4,11 +4,10 @@ class AppColor {
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
   static const Color transparent = Color(0x00000000);
-  static const Color blue = Color(0xFF252941);
-  static const Color kknowelloBlue = Color(0xFF0283c7);
+  static const Color blue = Color(0xFF0492C2);
   static const Color light = Color(0xffF4F4F4);
   static const Color dark = Color(0xFF2f3338);
-  static const Color blueDark = Color(0xFF05060B);
+  static const Color blueDark = Color(0xFF23395d);
   static const Color red = Color(0xFFD13438);
   static const Color redDark = Color(0xFF982626);
   static const Color cardDark = Color(0xFF3B3E43);

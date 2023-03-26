@@ -55,14 +55,16 @@ class AppResponsive {
     double? fsize,
     FontWeight? fweight,
     Color? tColor,
+    String? fontFamily,
     TextOverflow? ovrflow = TextOverflow.ellipsis,
   }) =>
       TextStyle(
         color: tColor ?? Theme.of(context).primaryColor,
-        letterSpacing: letterSpacing,
+        letterSpacing: letterSpacing ?? 0.7,
         fontSize:
             fsize != null ? fontSize(context) * fsize : kmediumFont(context),
         //  overflow: overf ?? ovrflow,
+        fontFamily: fontFamily ?? "poppins",
         fontWeight: fweight,
       );
 }

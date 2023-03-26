@@ -1,5 +1,9 @@
 import 'dart:developer';
 
+import 'package:architech_todo/src/app/features/authentication/presentation/pages/forget_password_page.dart';
+import 'package:architech_todo/src/app/features/authentication/presentation/pages/login_page.dart';
+import 'package:architech_todo/src/app/features/authentication/presentation/pages/signup_page.dart';
+import 'package:architech_todo/src/app/features/home/presentation/pages/home_page.dart';
 import 'package:architech_todo/src/app/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +15,18 @@ class AppRoute {
       case SplashPage.route:
         return MaterialPageRoute(builder: (context) => const SplashPage());
 
-      // case AuthPage.route:
-      //   return MaterialPageRoute(builder: (context) => const AuthPage());
+      case LoginPage.route:
+        return MaterialPageRoute(builder: (context) => const LoginPage());
+
+      case ForgetPasswordPage.route:
+        return MaterialPageRoute(
+            builder: (context) => const ForgetPasswordPage());
+
+      case SignUpPage.route:
+        return MaterialPageRoute(builder: (context) => const SignUpPage());
+
+      case HomePage.route:
+        return MaterialPageRoute(builder: (context) => const HomePage());
 
       // case SignUpLoginPage.route:
       //   return MaterialPageRoute(
