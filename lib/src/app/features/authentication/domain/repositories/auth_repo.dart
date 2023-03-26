@@ -1,0 +1,8 @@
+import 'package:architech_todo/src/app/features/authentication/data/models/user_model.dart';
+import 'package:architech_todo/src/app/features/authentication/domain/entities/user_entity.dart';
+import 'package:architech_todo/src/core/errors/failures.dart';
+import 'package:dartz/dartz.dart';
+
+abstract class AuthRepository {
+  Future<Either<Failure, UserModel>> createUser(UserEntity user);
+}

@@ -6,3 +6,13 @@ abstract class AuthenticationEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class SignUpEvent extends AuthenticationEvent {
+  final UserEntity userEntity;
+  const SignUpEvent(this.userEntity);
+}
+
+class LoginEvent extends AuthenticationEvent {
+  final String userName, password;
+  const LoginEvent(this.userName, this.password);
+}

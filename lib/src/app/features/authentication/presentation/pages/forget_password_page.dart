@@ -19,7 +19,7 @@ class ForgetPasswordPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 100),
+              SizedBox(height: AppResponsive.height(context) * 0.2),
               Text(
                 "Forget Password",
                 style: AppResponsive.responsiveTextStyle(
