@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:architech_todo/src/app/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRoute {
@@ -7,8 +8,8 @@ class AppRoute {
     final dynamic arguments = settings.arguments;
     log("navigating ${settings.name}");
     switch (settings.name) {
-      // case SplashPage.route:
-      //   return MaterialPageRoute(builder: (context) => const SplashPage());
+      case SplashPage.route:
+        return MaterialPageRoute(builder: (context) => const SplashPage());
 
       // case AuthPage.route:
       //   return MaterialPageRoute(builder: (context) => const AuthPage());
