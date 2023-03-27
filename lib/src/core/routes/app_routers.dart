@@ -5,6 +5,8 @@ import 'package:architech_todo/src/app/features/authentication/presentation/page
 import 'package:architech_todo/src/app/features/authentication/presentation/pages/signup_page.dart';
 import 'package:architech_todo/src/app/features/home/presentation/pages/home_page.dart';
 import 'package:architech_todo/src/app/features/splash/presentation/pages/splash_page.dart';
+import 'package:architech_todo/src/app/features/todo/presentation/pages/all_tasks_page.dart';
+import 'package:architech_todo/src/app/features/todo/presentation/pages/edit_task.dart';
 import 'package:flutter/material.dart';
 
 class AppRoute {
@@ -28,13 +30,12 @@ class AppRoute {
       case HomePage.route:
         return MaterialPageRoute(builder: (context) => const HomePage());
 
-      // case SignUpLoginPage.route:
-      //   return MaterialPageRoute(
-      //       builder: (context) => SignUpLoginPage(data: arguments));
+      case AllTaskPage.route:
+        return MaterialPageRoute(builder: (context) => const AllTaskPage());
 
-      // case WebViewWidget.route:
-      //   return MaterialPageRoute(
-      //       builder: (context) => WebViewWidget(data: arguments));
+      case EditTasksPage.route:
+        return MaterialPageRoute(
+            builder: (context) => EditTasksPage(data: arguments));
 
       // case AppBottomNavigationBar.route:
       //   return MaterialPageRoute(

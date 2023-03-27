@@ -10,10 +10,10 @@ class AppTheme {
       primaryColorDark: AppColor.dark,
       appBarTheme: const AppBarTheme(
         elevation: 2,
-        iconTheme: IconThemeData(color: AppColor.black),
-        backgroundColor: AppColor.light,
+        iconTheme: IconThemeData(color: AppColor.white),
+        backgroundColor: AppColor.blue,
         titleTextStyle: TextStyle(
-          color: AppColor.black,
+          color: AppColor.white,
           fontSize: 16,
           fontFamily: 'poppins',
           fontWeight: FontWeight.w600,
@@ -78,7 +78,7 @@ class AppTheme {
       iconButtonTheme: const IconButtonThemeData(),
       inputDecorationTheme: InputDecorationTheme(
         floatingLabelBehavior: FloatingLabelBehavior.auto,
-        contentPadding: const EdgeInsets.only(left: 10),
+        contentPadding: const EdgeInsets.only(left: 10, top: 20),
         labelStyle: const TextStyle(color: Colors.grey),
         hintStyle: const TextStyle(color: Colors.grey),
         prefixIconColor: Colors.black,
@@ -119,11 +119,11 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
         elevation: 2,
         iconTheme: IconThemeData(color: AppColor.white),
-        backgroundColor: AppColor.dark,
+        backgroundColor: AppColor.blue,
         titleTextStyle: TextStyle(
             color: AppColor.white,
             fontSize: 16,
-            fontFamily: 'monseterrat',
+            fontFamily: 'poppins',
             fontWeight: FontWeight.w600),
         // systemOverlayStyle: SystemUiOverlayStyle(
         //   systemNavigationBarColor: AppColor.blue,
@@ -187,7 +187,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         floatingLabelBehavior: FloatingLabelBehavior.auto,
-        contentPadding: const EdgeInsets.only(left: 10),
+        contentPadding: const EdgeInsets.only(left: 10, top: 20),
         labelStyle: const TextStyle(color: Colors.grey),
         hintStyle: const TextStyle(color: Colors.grey),
         prefixIconColor: Colors.white,

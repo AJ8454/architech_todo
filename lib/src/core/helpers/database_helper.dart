@@ -1,4 +1,5 @@
 import 'package:architech_todo/src/app/features/authentication/data/models/user_model.dart';
+import 'package:architech_todo/src/app/features/todo/data/models/todo_model.dart';
 import 'package:architech_todo/src/core/utils/app_strings.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -38,7 +39,18 @@ class DatabaseHelper {
       )
       ''');
 
+    await db.execute('''CREATE TABLE ${AppStrings.todoTable} (
+        ${TodoDBFields.id} ${AppStrings.idType},
+        ${TodoDBFields.title} ${AppStrings.textType},
+        ${TodoDBFields.description} ${AppStrings.textType},
+        ${TodoDBFields.fromDate} ${AppStrings.textType},
+         ${TodoDBFields.toDate} ${AppStrings.textType},
+        ${TodoDBFields.createdAt} ${AppStrings.textType}
+      )
+      ''');
+
     // here all table create query will come....
+    print("all tables Created");
   }
 
   Future close() async {

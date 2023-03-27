@@ -83,12 +83,12 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
 
   // Future<int> updateUser(UserModel user) async {
   //   final db = await instance.database;
-  //   return db.update(
-  //     AppStrings.authTable,
-  //     user.toJson(),
-  //     where: '${AuthDBFields.id} = ?',
-  //     whereArgs: [user.id],
-  //   );
+    // return db.update(
+    //   AppStrings.authTable,
+    //   user.toJson(),
+    //   where: '${AuthDBFields.id} = ?',
+    //   whereArgs: [user.id],
+    // );
   // }
 
   // Future<int> deleteUser(int id) async {

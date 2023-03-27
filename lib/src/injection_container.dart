@@ -14,6 +14,11 @@ import 'package:architech_todo/src/app/features/splash/domain/repositories/splas
 import 'package:architech_todo/src/app/features/splash/domain/usecases/splash_usecase.dart';
 import 'package:architech_todo/src/app/features/splash/presentation/bloc/splash_bloc.dart';
 import 'package:architech_todo/src/app/features/theme/presentation/bloc/theme_bloc.dart';
+import 'package:architech_todo/src/app/features/todo/data/datasources/todo_local_datasource.dart';
+import 'package:architech_todo/src/app/features/todo/data/repositories/todo_repo_impl.dart';
+import 'package:architech_todo/src/app/features/todo/domain/repositories/todo_repo.dart';
+import 'package:architech_todo/src/app/features/todo/domain/usecases/todo_usecase.dart';
+import 'package:architech_todo/src/app/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:architech_todo/src/core/helpers/database_helper.dart';
 import 'package:architech_todo/src/core/network/network_info.dart';
 import 'package:get_it/get_it.dart';
@@ -64,6 +69,18 @@ Future<void> init() async {
   sl.registerLazySingleton<HomeLocalDataSource>(() =>
       HomeLocalDataSourceImpl(databaseHelper: sl(), sharedPreferences: sl()));
 
+  //---------- for Todo -----------------------------------------------
+
+  // Bloc
+  sl.registerFactory(() => TodoBloc(todoUsecase: sl()));
+  // usecase
+  sl.registerLazySingleton(() => TodoUsecase(todoRepository: sl()));
+  // Reposiroty
+  sl.registerLazySingleton<TodoRepository>(
+      () => TodoRepositoryImpl(localDataSource: sl()));
+  // DataSources
+  sl.registerLazySingleton<TodoLocalDataSource>(() =>
+      TodoLocalDataSourceImpl(databaseHelper: sl(), sharedPreferences: sl()));
   //---------- for core -----------------------------------------------
   // core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

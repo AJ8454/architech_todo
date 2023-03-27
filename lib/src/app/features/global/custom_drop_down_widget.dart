@@ -57,7 +57,7 @@ class _DropDownWidgetState extends State<CustomDropDownWidget> {
       child: DropdownButtonHideUnderline(
         child: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Theme.of(context).appBarTheme.backgroundColor,
+            canvasColor: Theme.of(context).scaffoldBackgroundColor,
           ),
           child: DropdownButton(
             iconSize: 25,

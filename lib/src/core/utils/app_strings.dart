@@ -6,6 +6,7 @@ class AppStrings {
 
   static const String todoDataBase = "todo.db";
   static const String authTable = "authentication";
+  static const String todoTable = "todos";
   static const String userPrefId = "UserId";
 
   // ------ db types =----------

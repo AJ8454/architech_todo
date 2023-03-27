@@ -28,6 +28,8 @@ class _SignUpPageState extends State<SignUpPage> {
       TextEditingController();
   String selectedGender = '';
 
+  final GlobalKey<FormState> _formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,98 +41,139 @@ class _SignUpPageState extends State<SignUpPage> {
             return Padding(
               padding: const EdgeInsets.all(AppResponsive.kdefaultPadding),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: AppResponsive.height(context) * 0.10),
-                    Text(
-                      "Sign Up",
-                      style: AppResponsive.responsiveTextStyle(
-                        context,
-                        fsize: AppResponsive.kmaxExtraLargeFont(context) + 10,
-                        fweight: FontWeight.bold,
-                        tColor: AppColor.blue,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: AppResponsive.height(context) * 0.15),
+                      Text(
+                        "Sign Up",
+                        style: AppResponsive.responsiveTextStyle(
+                          context,
+                          fsize: AppResponsive.kmaxExtraLargeFont(context) + 10,
+                          fweight: FontWeight.bold,
+                          tColor: AppColor.blue,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: userNameController,
-                      labelText: "Username",
-                      hintText: "Enter Username",
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: emailController,
-                      labelText: "Email",
-                      hintText: "Enter Email",
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CustomTextFormField(
-                            controller: fNameController,
-                            labelText: "First Name",
-                            hintText: "Enter First Name",
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: CustomTextFormField(
-                            controller: lNameController,
-                            labelText: "Last Name",
-                            hintText: "Enter Last Name",
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    CustomDropDownWidget(
-                      dropMenuList: const ["Male", "Female", "Other"],
-                      labelText: "Gender",
-                      hintText: "Select Gender",
-                      selectedReturnValue: (value) {
-                        selectedGender = value;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: passwordController,
-                      labelText: "Password",
-                      hintText: "Enter Password",
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: confirmPasswordController,
-                      labelText: "Confirm Password",
-                      hintText: "Enter Confirm Password",
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: double.infinity,
-                      child: CustomRoundedButtonWidget(
-                        child: const Text("SignUp"),
-                        onClicked: () {
-                          UserEntity userEntity = UserEntity(
-                            username: userNameController.text,
-                            email: emailController.text,
-                            password: confirmPasswordController.text,
-                            fName: fNameController.text,
-                            lName: lNameController.text,
-                            gender: selectedGender,
-                            image: "",
-                            createdAt: DateTime.now(),
-                          );
-                          BlocProvider.of<AuthenticationBloc>(context)
-                              .add(SignUpEvent(userEntity));
+                      const SizedBox(height: 20),
+                      CustomTextFormField(
+                        controller: userNameController,
+                        labelText: "Username",
+                        hintText: "Enter Username",
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "Please Enter Username";
+                          }
+                          return null;
                         },
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                      const SizedBox(height: 20),
+                      CustomTextFormField(
+                        controller: emailController,
+                        labelText: "Email",
+                        hintText: "Enter Email",
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "Please Enter Email";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomTextFormField(
+                              controller: fNameController,
+                              labelText: "First Name",
+                              hintText: "Enter First Name",
+                              validator: (val) {
+                                if (val!.isEmpty) {
+                                  return "Please Enter First Name";
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: CustomTextFormField(
+                              controller: lNameController,
+                              labelText: "Last Name",
+                              hintText: "Enter Last Name",
+                              validator: (val) {
+                                if (val!.isEmpty) {
+                                  return "Please Enter Last Name";
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      CustomDropDownWidget(
+                        dropMenuList: const ["Male", "Female", "Other"],
+                        labelText: "Gender",
+                        hintText: "Select Gender",
+                        selectedReturnValue: (value) {
+                          selectedGender = value;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      CustomTextFormField(
+                        controller: passwordController,
+                        labelText: "Password",
+                        hintText: "Enter Password",
+                        obscureText: true,
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "Please Enter Password";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      CustomTextFormField(
+                        controller: confirmPasswordController,
+                        labelText: "Confirm Password",
+                        hintText: "Enter Confirm Password",
+                        obscureText: true,
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "Please Enter Password";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        child: CustomRoundedButtonWidget(
+                          child: const Text("SignUp"),
+                          onClicked: () {
+                            if (_formKey.currentState!.validate()) {
+                              UserEntity userEntity = UserEntity(
+                                username: userNameController.text,
+                                email: emailController.text,
+                                password: confirmPasswordController.text,
+                                fName: fNameController.text,
+                                lName: lNameController.text,
+                                gender: selectedGender,
+                                image: "",
+                                createdAt: DateTime.now(),
+                              );
+                              BlocProvider.of<AuthenticationBloc>(context)
+                                  .add(SignUpEvent(userEntity));
+                            }
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             );

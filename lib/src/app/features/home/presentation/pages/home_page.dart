@@ -4,6 +4,8 @@ import 'package:architech_todo/src/app/features/global/top_container.dart';
 import 'package:architech_todo/src/app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:architech_todo/src/app/features/splash/presentation/pages/splash_page.dart';
 import 'package:architech_todo/src/app/features/theme/presentation/widgets/theme_button_widget.dart';
+import 'package:architech_todo/src/app/features/todo/presentation/pages/all_tasks_page.dart';
+import 'package:architech_todo/src/app/features/todo/presentation/pages/edit_task.dart';
 import 'package:architech_todo/src/core/responsive/app_responsive.dart';
 import 'package:architech_todo/src/core/routes/app_navigator.dart';
 import 'package:architech_todo/src/core/utils/app_colors.dart';
@@ -65,27 +67,44 @@ class _HomePageState extends State<HomePage> {
               todoButtons(
                 context,
                 lable1: "All Tasks",
-                onClicked1: () {},
+                onClicked1: () {
+                  AppNavigator.push(context, AllTaskPage.route);
+                },
                 lable2: "New Task",
-                onClicked2: () {},
+                onClicked2: () {
+                  AppNavigator.pushWithData(
+                      context, EditTasksPage.route, {"fromEdit": false});
+                },
               ),
               const SizedBox(height: 30),
               todoButtons(
                 context,
                 lable1: "In Progress",
-                onClicked1: () {},
+                onClicked1: () {
+                  SnackBarMessage().showSuccessSnackBar(
+                      message: "Coming soon", context: context);
+                },
                 lable2: "Done",
-                onClicked2: () {},
+                onClicked2: () {
+                  SnackBarMessage().showSuccessSnackBar(
+                      message: "Coming soon", context: context);
+                },
               ),
               const SizedBox(height: 30),
               todoButtons(
                 context,
                 lable1: "Expired",
-                onClicked1: () {},
+                onClicked1: () {
+                  SnackBarMessage().showSuccessSnackBar(
+                      message: "Coming soon", context: context);
+                },
                 lable2: "Up Coming",
-                onClicked2: () {},
+                onClicked2: () {
+                  SnackBarMessage().showSuccessSnackBar(
+                      message: "Coming soon", context: context);
+                },
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
             ],
           ),
         ),

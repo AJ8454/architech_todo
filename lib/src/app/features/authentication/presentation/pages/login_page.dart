@@ -23,6 +23,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -44,79 +45,98 @@ class _LoginPageState extends State<LoginPage> {
             return Padding(
               padding: const EdgeInsets.all(AppResponsive.kdefaultPadding),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: AppResponsive.height(context) * 0.2),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        AppStrings.appName,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: AppResponsive.height(context) * 0.2),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          AppStrings.appName,
+                          style: AppResponsive.responsiveTextStyle(
+                            context,
+                            fsize:
+                                AppResponsive.kmaxExtraLargeFont(context) + 5,
+                            fweight: FontWeight.bold,
+                            tColor: AppColor.blue,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      Text(
+                        "Login",
                         style: AppResponsive.responsiveTextStyle(
                           context,
-                          fsize: AppResponsive.kmaxExtraLargeFont(context) + 5,
+                          fsize: AppResponsive.kmaxExtraLargeFont(context) + 10,
                           fweight: FontWeight.bold,
                           tColor: AppColor.blue,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 30),
-                    Text(
-                      "Login",
-                      style: AppResponsive.responsiveTextStyle(
-                        context,
-                        fsize: AppResponsive.kmaxExtraLargeFont(context) + 10,
-                        fweight: FontWeight.bold,
-                        tColor: AppColor.blue,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: usernameController,
-                      labelText: "Username",
-                      hintText: "Enter Username",
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: passwordController,
-                      labelText: "Password",
-                      hintText: "Enter Password",
-                      obscureText: true,
-                    ),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: TextButton(
-                        onPressed: () {
-                          AppNavigator.push(context, ForgetPasswordPage.route);
+                      const SizedBox(height: 20),
+                      CustomTextFormField(
+                        controller: usernameController,
+                        labelText: "Username",
+                        hintText: "Enter Username",
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "Please Enter Username";
+                          }
+                          return null;
                         },
-                        child: const Text("Forget Password"),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: double.infinity,
-                      child: CustomRoundedButtonWidget(
-                        onClicked: () {
-                          BlocProvider.of<AuthenticationBloc>(context).add(
-                              LoginEvent(usernameController.text,
-                                  passwordController.text));
+                      const SizedBox(height: 20),
+                      CustomTextFormField(
+                        controller: passwordController,
+                        labelText: "Password",
+                        hintText: "Enter Password",
+                        obscureText: true,
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "Please Enter Password";
+                          }
+                          return null;
                         },
-                        child: const Text("Login"),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: TextButton(
-                        onPressed: () {
-                          AppNavigator.push(context, SignUpPage.route);
-                        },
-                        child:
-                            const Text("Don't have an account yet?  Sign Up"),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: TextButton(
+                          onPressed: () {
+                            AppNavigator.push(
+                                context, ForgetPasswordPage.route);
+                          },
+                          child: const Text("Forget Password"),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        child: CustomRoundedButtonWidget(
+                          onClicked: () {
+                            if (_formKey.currentState!.validate()) {
+                              BlocProvider.of<AuthenticationBloc>(context).add(
+                                  LoginEvent(usernameController.text,
+                                      passwordController.text));
+                            }
+                          },
+                          child: const Text("Login"),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: TextButton(
+                          onPressed: () {
+                            AppNavigator.push(context, SignUpPage.route);
+                          },
+                          child:
+                              const Text("Don't have an account yet?  Sign Up"),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             );
