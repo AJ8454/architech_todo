@@ -4,7 +4,7 @@ class AppStrings {
   static const String cacheUserKey = "cacheUserKey";
   static const cacheUserLoggedKey = "CACHED_USERLOGGED";
 
-  static const String authDataBase = "auth.db";
+  static const String todoDataBase = "todo.db";
   static const String authTable = "authentication";
   static const String userPrefId = "UserId";
 

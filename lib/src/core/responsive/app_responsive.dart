@@ -60,7 +60,7 @@ class AppResponsive {
   }) =>
       TextStyle(
         color: tColor ?? Theme.of(context).primaryColor,
-        letterSpacing: letterSpacing ?? 0.7,
+        letterSpacing: letterSpacing ?? 0.4,
         fontSize:
             fsize != null ? fontSize(context) * fsize : kmediumFont(context),
         //  overflow: overf ?? ovrflow,

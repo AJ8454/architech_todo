@@ -20,7 +20,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       BlocProvider.of<SplashBloc>(context).add(GetUserLoggedEvent());
     });
     super.initState();

@@ -5,7 +5,6 @@ import 'package:architech_todo/src/app/features/global/custom_rounded_button.dar
 import 'package:architech_todo/src/app/features/global/custom_text_form_field_widget.dart';
 import 'package:architech_todo/src/app/features/global/snackbar_message.dart';
 import 'package:architech_todo/src/app/features/home/presentation/pages/home_page.dart';
-import 'package:architech_todo/src/app/features/theme/presentation/widgets/theme_button_widget.dart';
 import 'package:architech_todo/src/core/responsive/app_responsive.dart';
 import 'package:architech_todo/src/core/routes/app_navigator.dart';
 import 'package:architech_todo/src/core/utils/app_colors.dart';
@@ -35,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
                 .showErrorSnackBar(message: state.error, context: context);
           }
           if (state is AuthLoggedInState) {
-            AppNavigator.push(context, HomePage.route);
+            AppNavigator.pushReplace(context, HomePage.route);
           }
         },
         builder: (context, state) {
@@ -116,8 +115,6 @@ class _LoginPageState extends State<LoginPage> {
                             const Text("Don't have an account yet?  Sign Up"),
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const TheemButtonWidget(),
                     const SizedBox(height: 20),
                   ],
                 ),
