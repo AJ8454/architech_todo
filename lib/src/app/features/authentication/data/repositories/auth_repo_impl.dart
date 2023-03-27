@@ -17,14 +17,36 @@ class AuthRepositoryImpl implements AuthRepository {
           username: user.username,
           email: user.email,
           password: user.password,
-          firstName: user.firstName,
-          lastName: user.lastName,
+          fName: user.fName,
+          lName: user.lName,
           gender: user.gender,
           image: user.image,
           createdAt: user.createdAt);
 
       final result = await localDataSource.createUser(userModel);
       return right(result);
+    } catch (e) {
+      return left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> loginUser(
+      String username, String password) async {
+    try {
+      final result = await localDataSource.loginUser(username, password);
+      return right(result);
+    } catch (e) {
+      return left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> forgetPassword(
+      String email, String password) async {
+    try {
+      await localDataSource.fogetPassword(email, password);
+      return right(unit);
     } catch (e) {
       return left(ServerFailure());
     }

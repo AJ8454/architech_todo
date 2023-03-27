@@ -5,4 +5,9 @@ import 'package:dartz/dartz.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, UserModel>> createUser(UserEntity user);
+
+  Future<Either<Failure, UserModel>> loginUser(
+      String username, String password);
+
+  Future<Either<Failure, Unit>> forgetPassword(String email, String password);
 }

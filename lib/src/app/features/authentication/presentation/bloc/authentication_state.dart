@@ -11,12 +11,16 @@ class AuthenticationInitial extends AuthenticationState {}
 
 class AuthLoadingState extends AuthenticationState {}
 
-class AuthLoadedState extends AuthenticationState {
+class AuthLoggedInState extends AuthenticationState {
   final UserModel userModel;
-  const AuthLoadedState(this.userModel);
+  const AuthLoggedInState(this.userModel);
 
   @override
   List<Object> get props => [userModel];
+}
+
+class AuthSignedUpState extends AuthenticationState {
+  const AuthSignedUpState();
 }
 
 class AuthFailureState extends AuthenticationState {
@@ -26,3 +30,5 @@ class AuthFailureState extends AuthenticationState {
   @override
   List<Object> get props => [error];
 }
+
+class AuthPasswordChangedState extends AuthenticationState {}

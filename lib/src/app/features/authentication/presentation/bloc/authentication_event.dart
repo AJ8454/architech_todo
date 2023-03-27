@@ -16,3 +16,8 @@ class LoginEvent extends AuthenticationEvent {
   final String userName, password;
   const LoginEvent(this.userName, this.password);
 }
+
+class ForgetPasswordEvent extends AuthenticationEvent {
+  final String email, password;
+  const ForgetPasswordEvent(this.email, this.password);
+}

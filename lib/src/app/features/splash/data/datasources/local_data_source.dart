@@ -11,8 +11,6 @@ abstract class SplashLocalDataSource {
   Future<UserModel> getCachedUser();
 }
 
-const cacheUserLoggedKey = "CACHED_USERLOGGED";
-
 class SplashLocalDataSourceImpl implements SplashLocalDataSource {
   final SharedPreferences sharedPreference;
 
@@ -20,7 +18,7 @@ class SplashLocalDataSourceImpl implements SplashLocalDataSource {
 
   @override
   Future<bool> getCachedUserLogged() async {
-    final jsonBool = sharedPreference.getBool(cacheUserLoggedKey);
+    final jsonBool = sharedPreference.getBool(AppStrings.cacheUserLoggedKey);
     if (jsonBool != null) {
       return (jsonBool);
     } else {
@@ -30,7 +28,7 @@ class SplashLocalDataSourceImpl implements SplashLocalDataSource {
 
   @override
   Future<void> setCachedUserLogged(bool isLog) async {
-    await sharedPreference.setBool(cacheUserLoggedKey, isLog);
+    await sharedPreference.setBool(AppStrings.cacheUserLoggedKey, isLog);
   }
 
   @override

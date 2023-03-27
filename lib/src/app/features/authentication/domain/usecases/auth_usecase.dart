@@ -12,4 +12,14 @@ class AuthUsecase {
   Future<Either<Failure, UserModel>> callCreateUser(UserEntity user) async {
     return await _authRepository.createUser(user);
   }
+
+  Future<Either<Failure, UserModel>> callUserLogin(
+      String username, String password) async {
+    return await _authRepository.loginUser(username, password);
+  }
+
+  Future<Either<Failure, Unit>> callForgetPassword(
+      String email, String password) async {
+    return await _authRepository.forgetPassword(email, password);
+  }
 }

@@ -2,9 +2,11 @@ class AppStrings {
   static const String appName = "Architech Todo App";
 
   static const String cacheUserKey = "cacheUserKey";
+  static const cacheUserLoggedKey = "CACHED_USERLOGGED";
 
   static const String authDataBase = "auth.db";
   static const String authTable = "authentication";
+  static const String userPrefId = "UserId";
 
   // ------ db types =----------
   static const String idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';

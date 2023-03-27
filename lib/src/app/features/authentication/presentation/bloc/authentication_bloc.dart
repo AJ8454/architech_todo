@@ -16,6 +16,37 @@ class AuthenticationBloc
   AuthenticationBloc({required this.authUsecase})
       : super(AuthenticationInitial()) {
     on<SignUpEvent>((event, emit) => _onSignUpEvent(event, emit));
+
+    on<LoginEvent>((event, emit) => _onLoginEvent(event, emit));
+
+    on<ForgetPasswordEvent>(
+        (event, emit) => _onForgetPasswordEvent(event, emit));
+  }
+
+  void _onForgetPasswordEvent(
+    ForgetPasswordEvent event,
+    Emitter<AuthenticationState> emit,
+  ) async {
+    emit(AuthLoadingState());
+    final successOrFail =
+        await authUsecase.callForgetPassword(event.email, event.password);
+    emit(successOrFail.fold(
+      (l) => AuthFailureState(_mapFailureToMessage(l)),
+      (r) => AuthPasswordChangedState(),
+    ));
+  }
+
+  void _onLoginEvent(
+    LoginEvent event,
+    Emitter<AuthenticationState> emit,
+  ) async {
+    emit(AuthLoadingState());
+    final successOrFail =
+        await authUsecase.callUserLogin(event.userName, event.password);
+    emit(successOrFail.fold(
+      (l) => AuthFailureState(_mapFailureToMessage(l)),
+      (r) => AuthLoggedInState(r),
+    ));
   }
 
   void _onSignUpEvent(
@@ -26,7 +57,7 @@ class AuthenticationBloc
     final successOrFail = await authUsecase.callCreateUser(event.userEntity);
     emit(successOrFail.fold(
       (l) => AuthFailureState(_mapFailureToMessage(l)),
-      (r) => AuthLoadedState(r),
+      (r) => const AuthSignedUpState(),
     ));
   }
 

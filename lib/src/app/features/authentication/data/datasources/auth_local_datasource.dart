@@ -2,10 +2,13 @@ import 'package:architech_todo/src/app/features/authentication/data/models/user_
 import 'package:architech_todo/src/core/errors/failures.dart';
 import 'package:architech_todo/src/core/utils/app_strings.dart';
 import 'package:path/path.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class AuthLocalDataSource {
   Future<UserModel> createUser(UserModel user);
+  Future<UserModel> loginUser(String username, String password);
+  Future<void> fogetPassword(String email, String password);
 }
 
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
@@ -40,15 +43,18 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
         ${AuthDBFields.lName} ${AppStrings.textType},
         ${AuthDBFields.gender} ${AppStrings.textType},
         ${AuthDBFields.image} ${AppStrings.textType},
-        ${AuthDBFields.createdAt} ${AppStrings.textType},
+        ${AuthDBFields.createdAt} ${AppStrings.textType}
       )
       ''');
   }
 
   @override
   Future<UserModel> createUser(UserModel user) async {
+    final prefs = await SharedPreferences.getInstance();
     final db = await instance.database;
     final id = await db.insert(AppStrings.authTable, user.toJson());
+    prefs.setInt(AppStrings.userPrefId, id);
+    print("user Created $id");
     return user.copyWith(id: id);
   }
 
@@ -98,5 +104,35 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   Future close() async {
     final db = await instance.database;
     db.close();
+  }
+
+  @override
+  Future<UserModel> loginUser(String username, String password) async {
+    final prefs = await SharedPreferences.getInstance();
+    final db = await instance.database;
+    final maps = await db.query(
+      AppStrings.authTable,
+      columns: AuthDBFields.values,
+      where: '${AuthDBFields.userName} = ? and ${AuthDBFields.password} = ?',
+      whereArgs: [username, password],
+    );
+
+    if (maps.isNotEmpty) {
+      prefs.setBool(AppStrings.cacheUserLoggedKey, true);
+      return UserModel.fromJson(maps.first);
+    } else {
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<void> fogetPassword(String email, String password) async {
+    final db = await instance.database;
+    final maps = await db.rawUpdate('''
+    UPDATE ${AppStrings.authTable} 
+    SET ${AuthDBFields.password} = ? 
+    WHERE ${AuthDBFields.email} = ?
+    ''', [password, email]);
+    print(maps);
   }
 }

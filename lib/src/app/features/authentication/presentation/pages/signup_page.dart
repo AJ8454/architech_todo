@@ -5,6 +5,7 @@ import 'package:architech_todo/src/app/features/global/custom_rounded_button.dar
 import 'package:architech_todo/src/app/features/global/custom_text_form_field_widget.dart';
 import 'package:architech_todo/src/app/features/global/snackbar_message.dart';
 import 'package:architech_todo/src/core/responsive/app_responsive.dart';
+import 'package:architech_todo/src/core/routes/app_navigator.dart';
 import 'package:architech_todo/src/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -117,8 +118,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             username: userNameController.text,
                             email: emailController.text,
                             password: confirmPasswordController.text,
-                            firstName: fNameController.text,
-                            lastName: lNameController.text,
+                            fName: fNameController.text,
+                            lName: lNameController.text,
                             gender: selectedGender,
                             image: "",
                             createdAt: DateTime.now(),
@@ -140,9 +141,10 @@ class _SignUpPageState extends State<SignUpPage> {
             SnackBarMessage()
                 .showErrorSnackBar(message: state.error, context: context);
           }
-          if (state is AuthLoadedState) {
-            SnackBarMessage().showErrorSnackBar(
+          if (state is AuthSignedUpState) {
+            SnackBarMessage().showSuccessSnackBar(
                 message: "User Created Successfully", context: context);
+            AppNavigator.pop(context);
           }
         },
       ),
